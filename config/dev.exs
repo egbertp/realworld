@@ -70,6 +70,6 @@ config :realworld, Realworld.Repo,
   password: "postgres",
   hostname: "localhost",
   database: "realworld-dev",
-  port: 5432,
+  port: 5482,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
