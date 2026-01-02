@@ -22,16 +22,43 @@ For more information on how to this works with other frontends/backends, head ov
 * erlang 25.2 and elixir 1.14.2-otp-25
 * PostgreSQL 14.6
 
+### Database
+
+```shell
+$ docker pull postgres:17-bookworm
+
+$ docker volume create pgdata_realworld_ash
+$ docker volume inspect pgdata_realworld_ash
+
+$ docker run --name psql_realworld_ash -p 5482:5432 \
+-e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres \
+-v pgdata_realworld_ash:/var/lib/postgresql/data \
+-d postgres:17-bookworm
+```
+
+
 ### Installation
 
 1. Clone the repo
    ```
    git clone https://github.com/team-alembic/realworld.git
    ```
+1b. Upgrade dependencies
+   ```
+ mix deps.update ash_authentication_phoenix  
+ mix deps.update ash_authentication
+ mix deps.update ash_postgres
+ mix deps.update ash_phoenix
+ mix deps.update igniter
+ 
+ 
+   ```
+
 2. Install dependencies
    ```
    cd realworld
    mix deps.get
+   mix deps.compile
    ```
 3. Create a postgres database and run migration with ash_postgres
    ```
